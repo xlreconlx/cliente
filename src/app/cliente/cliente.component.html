@@ -1,0 +1,89 @@
+<div class="container">
+  <h2>Clientes</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tipo Identificación</th>
+        <th>Número Identificación</th>
+        <th>Nombre</th>
+        <th>Primer Apellido</th>
+        <th>Segundo Apellido</th>
+        <th>Nombre</th>
+        <th>Género</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{ cliente.idCliente }}</td>
+        <td>{{ cliente.tipoIdentificacion }}</td>
+        <td>{{ cliente.numeroIdentificacion }}</td>
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.primerApellido }}</td>
+        <td>{{ cliente.segundoApellido }}</td>
+        <td>{{ cliente.genero }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="editarCliente(cliente.idCliente)">Editar</button>
+          <button class="btn btn-danger" (click)="eliminarCliente(cliente.idCliente)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Agregar Cliente</h3>
+
+  <form (submit)="editarClienteId ? actualizarCliente() : crearCliente()">
+    <div class="form-group">
+      <label for="tipoIdentificacion">Tipo Identificación</label>
+      <input type="text" class="form-control" name="tipoIdentificacion" id="tipoIdentificacion" [(ngModel)]="cliente.tipoIdentificacion" required>
+    </div>
+
+    <div class="form-group">
+      <label for="numeroIdentificacion">Número Identificación</label>
+      <input type="text" class="form-control" name="numeroIdentificacion" id="numeroIdentificacion" [(ngModel)]="cliente.numeroIdentificacion" required>
+    </div>
+
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" class="form-control" name="nombre" id="nombre" [(ngModel)]="cliente.nombre" required>
+    </div>
+
+    <div class="form-group">
+      <label for="nombre">Primer Apellido</label>
+      <input type="text" class="form-control" name="primerApellido" id="primerApellido" [(ngModel)]="cliente.primerApellido" required>
+    </div>
+
+    <div class="form-group">
+      <label for="nombre">Segundo Apellido</label>
+      <input type="text" class="form-control" name="segundoApellido" id="segundoApellido" [(ngModel)]="cliente.segundoApellido" required>
+    </div>
+
+    <div class="form-group">
+      <label for="genero">Género</label>
+      <input type="text" class="form-control" name="genero" id="genero" [(ngModel)]="cliente.genero" required>
+    </div>
+
+    <button type="submit" class="btn btn-success">{{ editarClienteId ? 'Actualizar' : 'Agregar' }}</button>
+  </form>
+
+  <div class="modal fade" id="ventanaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Estado de la transaccion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="cerrarVentanaModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{ mensaje }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cerrarVentanaModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
